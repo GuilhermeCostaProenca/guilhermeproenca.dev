@@ -12,9 +12,16 @@ export function useScrollEngine(): void {
   const activeKeys = useRef<Set<string>>(new Set());
 
   useEffect(() => {
-    const sections = chapterRegistry
-      .map((chapter) => document.querySelector<HTMLElement>(chapter.startMarker))
-      .filter((el): el is HTMLElement => Boolean(el));
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    const chapterElements = chapterRegistry
+      .map((chapter) => ({
+        chapter,
+        element: document.querySelector<HTMLElement>(chapter.startMarker),
+      }))
+      .filter((item): item is { chapter: (typeof chapterRegistry)[number]; element: HTMLElement } =>
+        Boolean(item.element),
+      );
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -36,15 +43,18 @@ export function useScrollEngine(): void {
       { threshold: 0.4 },
     );
 
-    sections.forEach((section) => observer.observe(section));
+    chapterElements.forEach(({ element }) => observer.observe(element));
+
+    if (prefersReducedMotion) {
+      chapterElements.forEach(({ element }) => element.style.setProperty('--chapter-progress', '1'));
+      return () => observer.disconnect();
+    }
 
     let raf = 0;
     const onScroll = () => {
       if (raf) return;
       raf = window.requestAnimationFrame(() => {
-        for (const chapter of chapterRegistry) {
-          const element = document.querySelector<HTMLElement>(chapter.startMarker);
-          if (!element) continue;
+        for (const { element } of chapterElements) {
           const rect = element.getBoundingClientRect();
           const progress = clamp(1 - rect.top / window.innerHeight, 0, 1);
           element.style.setProperty('--chapter-progress', progress.toFixed(3));

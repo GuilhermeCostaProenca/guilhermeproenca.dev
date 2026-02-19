@@ -8,3 +8,9 @@
 
 ## D-003: Cases em rota leve
 **Motivo**: manter home focada e permitir expansão incremental de conteúdo detalhado.
+
+## D-004: Prefetch de cases por proximidade
+**Motivo**: melhorar tempo de navegação para detalhes sem prefetch agressivo no carregamento inicial.
+
+## D-005: Scroll progress com fallback para reduced motion
+**Motivo**: manter observabilidade de capítulos e reduzir estímulo de movimento para quem pede menos animação.

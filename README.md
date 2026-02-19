@@ -21,6 +21,8 @@ Abra `http://localhost:3000`.
 - CTA persistente + CTAs contextuais.
 - `Chapter Registry` e `Scroll Engine` com eventos `chapter_enter`, `chapter_exit`, `case_open`.
 - Rota leve de cases em `/cases/[id]`.
+- Prefetch inteligente dos cases quando o bloco de cases aproxima da viewport.
+- Fallback para `prefers-reduced-motion` no cálculo de progress de capítulos.
 - Base documental: arquitetura, roadmap, budget e decisões.
 
 ## Evolução para animações (Fase 2)
