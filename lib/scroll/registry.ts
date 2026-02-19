@@ -1,0 +1,58 @@
+import { ChapterConfig } from './types';
+
+export const chapterRegistry: ChapterConfig[] = [
+  {
+    id: 'hook',
+    title: 'Hook',
+    startMarker: '#hook',
+    endMarker: '#problemas',
+    enablePin: false,
+    ctas: [{ label: 'Ver cases', href: '#cases' }],
+    analyticsKey: 'chapter_hook',
+  },
+  {
+    id: 'problemas',
+    title: 'Problemas',
+    startMarker: '#problemas',
+    endMarker: '#metodo',
+    enablePin: false,
+    ctas: [{ label: 'Ver método', href: '#metodo' }],
+    analyticsKey: 'chapter_problemas',
+  },
+  {
+    id: 'metodo',
+    title: 'Método',
+    startMarker: '#metodo',
+    endMarker: '#cases',
+    enablePin: true,
+    ctas: [{ label: 'Ir para cases', href: '#cases' }],
+    analyticsKey: 'chapter_metodo',
+  },
+  {
+    id: 'cases',
+    title: 'Cases',
+    startMarker: '#cases',
+    endMarker: '#credibilidade',
+    enablePin: false,
+    ctas: [{ label: 'Abrir case', href: '/cases/case-a' }],
+    analyticsKey: 'chapter_cases',
+  },
+  {
+    id: 'credibilidade',
+    title: 'Credibilidade',
+    startMarker: '#credibilidade',
+    endMarker: '#conversao',
+    enablePin: false,
+    ctas: [{ label: 'Ver contato', href: '#conversao' }],
+    analyticsKey: 'chapter_credibilidade',
+  },
+  {
+    id: 'conversao',
+    title: 'Conversão',
+    startMarker: '#conversao',
+    endMarker: '#conversao',
+    enablePin: false,
+    ctas: [{ label: 'Contato', href: 'mailto:hello@example.com' }],
+    analyticsKey: 'chapter_conversao',
+  },
+];
